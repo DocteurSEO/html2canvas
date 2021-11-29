@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script src="https://github.com/niklasvh/html2canvas/releases/download/0.4.1/html2canvas.js"></script>
+
+<p></p>
+
+<a href="#" onClick="shotit()">shoot it</a> 
+<script>
+ 
+let params = new URLSearchParams(document.location.search.substring(1));
+ 
+let html = params.get('html') 
+ 
+
+
+var shotit = function() {
+
+    document.body.innerHTML = html 
+
+  html2canvas(document.body, {
+  onrendered: function(canvas) {
+       
+       
+     let img= canvas.toDataURL("image/png");
+      document.body.innerHTML = ''
+      document.body.innerHTML = '<img src="'+img+'"/>' 
+  },
+  width: 390,
+  height: 220
+});
+}
+
+shotit()
+</script>
+</body>
+</html>
